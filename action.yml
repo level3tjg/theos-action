@@ -86,7 +86,7 @@ runs:
       run: |
         . /etc/lsb-release
         mkdir -p ${{ inputs.theos-dir }}/toolchain/linux/iphone ${{ inputs.theos-dir }}/toolchain/swift
-        curl -sL https://github.com/kabiroberai/swift-toolchain-linux/releases/download/v2.1.0/swift-5.6.1-ubuntu${DISTRIB_RELEASE}.tar.xz \
+        curl -sL https://github.com/kabiroberai/swift-toolchain-linux/releases/download/v2.3.0/swift-5.8-ubuntu${DISTRIB_RELEASE}.tar.xz \
           | tar -xJf - -C ${{ inputs.theos-dir }}/toolchain
         ln -s ${{ inputs.theos-dir }}/toolchain/linux/iphone ${{ inputs.theos-dir }}/toolchain/swift
 
