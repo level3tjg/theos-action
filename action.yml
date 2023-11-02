@@ -40,17 +40,17 @@ runs:
     - id: information
       shell: bash
       run: |
-        echo "::set-output name=theos::`if [ ${{ inputs.theos-ref }} = "master" ]; then \
+        echo "theos=`if [ ${{ inputs.theos-ref }} = "master" ]; then \
             git ls-remote https://github.com/theos/theos | head -n 1 | cut -f 1; \
           else \
             echo ${{ inputs.theos-ref }}; \
-          fi`"
-        echo "::set-output name=theos-sdks::`if [ ${{ inputs.theos-sdks-ref }} = "master" ]; then \
+          fi`" >> $GITHUB_OUTPUT
+        echo "theos-sdks=`if [ ${{ inputs.theos-sdks-ref }} = "master" ]; then \
             git ls-remote https://github.com/theos/sdks | head -n 1 | cut -f 1; \
           else \
             echo ${{ inputs.theos-sdks-ref }}; \
-          fi`"
-        echo "::set-output name=theos-dir-basename::`basename ${{ inputs.theos-dir }}`"
+          fi`" >> $GITHUB_OUTPUT
+        echo "theos-dir-basename=`basename ${{ inputs.theos-dir }}`" >> $GITHUB_OUTPUT
         
     - uses: actions/cache@v3
       id: theos-cache
