@@ -86,7 +86,10 @@ runs:
       run: |
         . /etc/lsb-release
         mkdir -p ${{ inputs.theos-dir }}/toolchain/linux/iphone ${{ inputs.theos-dir }}/toolchain/swift
-        curl -sL https://github.com/kabiroberai/swift-toolchain-linux/releases/download/v2.3.0/swift-5.8-ubuntu${DISTRIB_RELEASE}.tar.xz \
+        if [[ $(arch) != 'x86_64' ]]; then
+          TOOLCHAIN_ARCH="-$(arch)"
+        fi
+        curl -sL https://github.com/kabiroberai/swift-toolchain-linux/releases/download/v2.3.0/swift-5.8-ubuntu${DISTRIB_RELEASE}${TOOLCHAIN_ARCH}.tar.xz \
           | tar -xJf - -C ${{ inputs.theos-dir }}/toolchain
         ln -s ${{ inputs.theos-dir }}/toolchain/linux/iphone ${{ inputs.theos-dir }}/toolchain/swift
 
