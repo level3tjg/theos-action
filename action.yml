@@ -34,6 +34,10 @@ inputs:
     description: 'Cache location for SDKs'
     required: false
     default: /usr/local/opt/__theos_sdks_cache
+outputs:
+  theos-cache-hit:
+    description: Cache hit for theos
+    value: ${{ steps.theos-cache.outputs.cache-hit }}
 runs:
   using: "composite"
   steps:
